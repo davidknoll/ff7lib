@@ -14,6 +14,11 @@ const enums = require('./enums');
 const fftext = require('./fftext');
 const structure = require('./structure');
 
+// Extend things
+Struct.prototype.getpath = getpath;
+Struct.prototype.setpath = setpath;
+FF7Lib.enum = enums;
+
 /**
  * Constructor for an FF7Lib save file object
  *
@@ -44,7 +49,6 @@ function getpath(prop) {
   });
   return current;
 }
-Struct.prototype.getpath = getpath;
 
 /**
  * Allows a structure member to be set by one text string as a path
@@ -58,7 +62,5 @@ function setpath(prop) {
   const parent = getpath(elements.join('.'));
   parent.set(last, data);
 }
-Struct.prototype.setpath = setpath;
 
-FF7Lib.enum = enums;
 module.exports = FF7Lib;
