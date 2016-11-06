@@ -5,7 +5,8 @@
   "main": "ff7lib.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2"
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,9 @@
     "struct": "0.0.11"
   },
   "devDependencies": {
+    "eslint": "^3.9.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0",
     "flow-bin": "^0.34.0"
   }
 }

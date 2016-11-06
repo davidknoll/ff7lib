@@ -1,0 +1,10 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "max-len": ["error", 80],
+    "no-console": 0,
+    "strict": 0,
+    "no-plusplus": 0,
+    "no-underscore-dangle": 0
+  }
+}

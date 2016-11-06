@@ -7,16 +7,16 @@
 'use strict';
 
 // Library imports
-const Struct = require('struct');
+const struct = require('struct');
 
 /**
- * Construct a Struct representing an FF7 save file
+ * Construct a struct representing an FF7 save file
  *
- * @returns {Struct}
+ * @returns {struct}
  */
 function build() {
   // Details shown in the load/save screen, no effect in-game
-  const Preview = Struct()
+  const preview = struct()
     .word8('level')
     .array('portraits', 3, 'word8')
     .array('name', 16, 'word8')
@@ -29,20 +29,20 @@ function build() {
     .array('location', 32, 'word8');
 
   // An RGB colour used in a menu/window
-  const Rgb = Struct()
+  const rgb = struct()
     .word8('r')
     .word8('g')
     .word8('b');
 
   // Colours used in menu/window backgrounds
-  const WindowColours = Struct()
-    .struct('upper-left', Rgb)
-    .struct('upper-right', Rgb)
-    .struct('lower-left', Rgb)
-    .struct('lower-right', Rgb);
+  const windowColours = struct()
+    .struct('upper-left', rgb)
+    .struct('upper-right', rgb)
+    .struct('lower-left', rgb)
+    .struct('lower-right', rgb);
 
   // A character's major stats
-  const Stats = Struct()
+  const stats = struct()
     .word8('strength')
     .word8('vitality')
     .word8('magic')
@@ -57,16 +57,16 @@ function build() {
     .word8('luck-bonus');
 
   // Information about one piece of Materia
-  // Note that Struct has no 24-bit integer type
-  const Materia = Struct()
+  // Note that struct has no 24-bit integer type
+  const materia = struct()
     .word8('id')
     .array('ap', 3, 'word8');
 
   // Records for one character- their name, stats, equipment
-  const CharacterRecord = Struct()
+  const characterRecord = struct()
     .word8('id')
     .word8('level')
-    .struct('stats', Stats)
+    .struct('stats', stats)
     .word8('limit-level')
     .word8('limit-bar')
     .array('name', 12, 'word8')
@@ -87,27 +87,27 @@ function build() {
     .word16Ule('max-hp')
     .word16Ule('max-mp')
     .word32Ule('cur-exp')
-    .array('weapon-materia', 8, Materia)
-    .array('armour-materia', 8, Materia)
+    .array('weapon-materia', 8, materia)
+    .array('armour-materia', 8, materia)
     .word32Ule('lvl-exp');
 
   // What the party owns that is not equipped
-  const Stock = Struct()
+  const stock = struct()
     .array('items', 320, 'word16Ule')
-    .array('materia', 200, Materia)
-    .array('stolen-materia', 48, Materia)
+    .array('materia', 200, materia)
+    .array('stolen-materia', 48, materia)
     .array('zz-unknown-z_3', 32, 'word8')
     .word32Ule('gil');
 
   // Total play time, and countdown when used
-  const Timer = Struct()
+  const timer = struct()
     .word32Ule('playtime')
     .word32Ule('countdown')
     .word32Ule('playtime-fraction')
     .word32Ule('countdown-fraction');
 
   // Relating to the party's position and location
-  const WorldMap = Struct()
+  const worldMap = struct()
     .word32Ule('cur-map-dw')
     .word16Ule('cur-map')
     .word16Ule('cur-loc')
@@ -118,17 +118,17 @@ function build() {
     .word8('direction');
 
   // Used by the random number generator to decide on battle stuff
-  const RandomBattle = Struct()
+  const randomBattle = struct()
     .word8('seed')
     .word8('offset');
 
   // PHS masks to lock out certain characters dependent on game phase
-  const Phs = Struct()
+  const phs = struct()
     .word16Ule('locking')
     .word16Ule('visibility');
 
   // Configuration options
-  const Config = Struct()
+  const config = struct()
     .word8('battle-speed')
     .word8('battle-msg-speed')
     .word16Ule('general')
@@ -136,30 +136,30 @@ function build() {
     .word8('msg-speed');
 
   // One of several saves within a bank
-  const Save = Struct()
+  const save = struct()
     .word32Ule('checksum')
-    .struct('preview', Preview)
-    .struct('window-colours', WindowColours)
-    .array('character-records', 9, CharacterRecord)
+    .struct('preview', preview)
+    .struct('window-colours', windowColours)
+    .array('character-records', 9, characterRecord)
     .array('party-members', 3, 'word8')
     .word8('zz-alignment')
-    .struct('stock', Stock)
-    .struct('timer', Timer)
-    .struct('map', WorldMap)
-    .struct('random-battle', RandomBattle)
+    .struct('stock', stock)
+    .struct('timer', timer)
+    .struct('map', worldMap)
+    .struct('random-battle', randomBattle)
     .word8('zz-alignment-2')
     .array('field-script', 5 * 256, 'word8')
-    .struct('phs', Phs)
+    .struct('phs', phs)
     .array('zz-unknown-z_39', 48, 'word8')
-    .struct('config', Config)
+    .struct('config', config)
     .array('zz-unknown-z_40', 7, 'word8');
 
   // The file on disk contains a header and several saves
-  const FF7File = Struct()
+  const ff7file = struct()
     .array('header', 9, 'word8')
-    .array('saves', 15, Save);
+    .array('saves', 15, save);
 
-  return FF7File;
+  return ff7file;
 }
 
 module.exports = build;

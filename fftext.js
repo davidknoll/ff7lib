@@ -11,10 +11,6 @@
 // Library imports
 const Struct = require('struct');
 
-// Extend struct with FF-Text functions
-Struct.prototype.defftext = defftext;
-Struct.prototype.enfftext = enfftext;
-
 /**
  * Decode an 0xFF-terminated FF Text field
  *
@@ -35,6 +31,7 @@ function defftext() {
   }
   return result.join('');
 }
+Struct.prototype.defftext = defftext;
 
 /**
  * Encode a string to 0xFF-terminated FF Text
@@ -57,3 +54,4 @@ function enfftext(str) {
     }
   }
 }
+Struct.prototype.enfftext = enfftext;

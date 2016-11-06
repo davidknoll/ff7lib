@@ -12,13 +12,8 @@
 const Struct = require('struct');
 // Project imports
 const enums = require('./enums');
-const fftext = require('./fftext');
 const structure = require('./structure');
-
-// Extend things
-Struct.prototype.getpath = getpath;
-Struct.prototype.setpath = setpath;
-FF7Lib.enum = enums;
+require('./fftext');
 
 /**
  * Constructor for an FF7Lib save file object
@@ -26,7 +21,7 @@ FF7Lib.enum = enums;
  * @param   {Buffer} Raw contents of file being loaded, optional
  * @returns {FF7Lib}
  */
-function FF7Lib(buf /*:?Buffer*/) {
+function FF7Lib(buf /* :?Buffer*/) {
   const myStructure = structure();
   if (buf) {
     myStructure._setBuff(buf);
@@ -45,12 +40,13 @@ function FF7Lib(buf /*:?Buffer*/) {
 function getpath(prop) {
   const elements = prop.split('.');
   let current = this;
-  elements.forEach(element => {
+  elements.forEach((element) => {
     // $FlowIssue https://github.com/facebook/flow/issues/1234
     current = current.get(element);
   });
   return current;
 }
+Struct.prototype.getpath = getpath;
 
 /**
  * Allows a structure member to be set by one text string as a path
@@ -65,5 +61,7 @@ function setpath(prop, data) {
   // $FlowIssue https://github.com/facebook/flow/issues/1234
   parent.set(last, data);
 }
+Struct.prototype.setpath = setpath;
 
+FF7Lib.enum = enums;
 module.exports = FF7Lib;
