@@ -32,3 +32,9 @@ for (let i = 0; i < party.length(); i++) {
     .get(party.get(i)).get('name').defftext();
   console.log(`Original: ${orig} Chosen: ${chosen}`);
 }
+
+const save0 = savefile.getpath('saves.0');
+const oldsum = save0.get('checksum').toString(16);
+save0.checksum();
+const newsum = save0.get('checksum').toString(16);
+console.log(`Orig sum: ${oldsum} Calc sum: ${newsum}`);
