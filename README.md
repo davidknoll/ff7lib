@@ -38,8 +38,8 @@ Changing numeric fields:
 savefile.setpath('saves.0.stock.gil', 9001);
 ```
 
-Saving (please note, there is a checksum that needs to be recalculated,
-which I don't do yet):
+Saving (recalculate the checksum on the edited block first):
 ```javascript
+savefile.getpath('saves.0').checksum();
 fs.writeFileSync('save01.ff7', savefile.buffer());
 ```

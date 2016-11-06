@@ -9,6 +9,7 @@
 'use strict';
 
 // Library imports
+const crc = require('crc');
 const Struct = require('struct');
 // Project imports
 const enums = require('./enums');
@@ -75,32 +76,10 @@ function checksum() {
     throw new Error('Can only checksum a save block');
   }
 
-  // Based on code in the Qhimm forums and Jenova save editor.
-  // This looks like a "bad" CRC as specified at
-  // http://srecord.sourceforge.net/crc16-ccitt.html
-  let len = 4336;
-  let ptr = 4;
-  let sum = 0xFFFF;
-  const pbit = 0x8000;
-  const poly = 0x1021;
-
-  while (len) {
-    const cur = buf[ptr];
-    sum ^= cur << 8;
-    len--;
-    ptr++;
-
-    for (let cnt = 0; cnt < 8; cnt++) {
-      if (sum & pbit) {
-        sum = (sum << 1) ^ poly;
-      } else {
-        sum <<= 1;
-      }
-    }
-
-    sum &= 0xFFFF;
-  }
-  this.set('checksum', ~sum & 0xFFFF);
+  // Exclude the existing checksum, then CRC the block
+  const dbuf = new Buffer(4336);
+  buf.copy(dbuf, 0, 4);
+  this.set('checksum', ~crc.crc16ccitt(dbuf) & 0xFFFF);
 }
 Struct.prototype.checksum = checksum;
 

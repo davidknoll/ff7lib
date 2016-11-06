@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/davidknoll/ff7lib#readme",
   "dependencies": {
+    "crc": "^3.4.1",
     "struct": "0.0.11"
   },
   "devDependencies": {
