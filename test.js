@@ -11,7 +11,7 @@ const ff7lib = require('./ff7lib');
 const rawbuf = fs.readFileSync(process.argv[2]);
 const savefile = new ff7lib(rawbuf);
 
-const zz = ff7lib.defftext(savefile.get('saves').get(0).get('preview').get('location'));
+const zz = savefile.get('saves').get(0).get('preview').get('location').defftext();
 console.log(zz);
 
 const blank = new ff7lib();

@@ -21,7 +21,4 @@ function ff7lib(buf) {
   return myStructure;
 }
 
-ff7lib.defftext = fftext.defftext;
-ff7lib.enfftext = fftext.enfftext;
-
 module.exports = ff7lib;

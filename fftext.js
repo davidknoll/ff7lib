@@ -7,19 +7,25 @@
 
 'use strict';
 
+const Struct = require('struct');
+Struct.prototype.defftext = defftext;
+Struct.prototype.enfftext = enfftext;
+
 /**
  * Decode an 0xFF-terminated FF Text field
  *
  * Note that this is a naive implementation that does not
  * properly treat characters outside of 7-bit ASCII.
  *
- * @param   {String} fftext
+ * "this" needs to be an array object as returned by struct's get(),
+ * which is not iterable and is not an actual array.
+ *
  * @returns {String}
  */
-function defftext(fftext) {
+function defftext() {
 	const result = [];
-  for (const ch of fftext) {
-    const cc = ch.charCodeAt(0);
+  for (let i = 0; i < this.length(); i++) {
+    const cc = this.get(i);
     if (cc === 0xFF) break;
     result.push(String.fromCharCode(cc + 0x20));
   }
@@ -32,17 +38,18 @@ function defftext(fftext) {
  * Note that this is a naive implementation that does not
  * properly treat characters outside of 7-bit ASCII.
  *
- * @param   {String} str
- * @returns {String}
+ * "this" needs to be an array object as returned by struct's get(),
+ * which is not iterable and is not an actual array.
+ *
+ * @param {String} str
  */
 function enfftext(str) {
-  const result = [];
-  for (const ch of str) {
-    const cc = ch.charCodeAt(0);
-    result.push(String.fromCharCode(cc - 0x20));
+  const result = str.split('').map(ch => ch.charCodeAt(0) - 0x20);
+  for (let i = 0; i < this.length(); i++) {
+    if (i >= result.length) {
+      this.set(i, 0xFF);
+    } else {
+      this.set(i, result[i]);
+    }
   }
-  result.push(String.fromCharCode(0xFF));
-  return result.join('');
 }
-
-module.exports = { defftext, enfftext };
