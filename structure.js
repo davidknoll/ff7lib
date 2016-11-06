@@ -10,14 +10,14 @@ function build() {
   const Preview = Struct()
     .word8('level')
     .array('portraits', 3, 'word8')
-    .chars('name', 16)
+    .array('name', 16, 'word8')
     .word16Ule('cur-hp')
     .word16Ule('max-hp')
     .word16Ule('cur-mp')
     .word16Ule('max-mp')
     .word32Ule('gil')
     .word32Ule('playtime')
-    .chars('location', 32);
+    .array('location', 32, 'word8');
 
   const Rgb = Struct()
     .word8('r')
@@ -54,7 +54,7 @@ function build() {
     .struct('stats', Stats)
     .word8('limit-level')
     .word8('limit-bar')
-    .chars('name', 12)
+    .array('name', 12, 'word8')
     .word8('weapon')
     .word8('armour')
     .word8('accessory')
