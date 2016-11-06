@@ -1,5 +1,7 @@
 /**
  * Names of characters, materia etc.
+ *
+ * No flow in here because https://github.com/facebook/flow/issues/380
  */
 
 'use strict';

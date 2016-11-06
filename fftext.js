@@ -3,6 +3,7 @@
  * used to store strings in the English version of FFVII.
  *
  * @link http://wiki.qhimm.com/view/FF7/FF_Text
+ * @flow
  */
 
 'use strict';

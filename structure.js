@@ -1,5 +1,7 @@
 /**
  * Definitions of structures in the .ff7 file format.
+ *
+ * @flow
  */
 
 'use strict';

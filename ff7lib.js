@@ -3,6 +3,7 @@
  *
  * @author David Knoll <david@davidknoll.me.uk>
  * @file
+ * @flow
  */
 
 'use strict';
@@ -25,7 +26,7 @@ FF7Lib.enum = enums;
  * @param   {Buffer} Raw contents of file being loaded, optional
  * @returns {FF7Lib}
  */
-function FF7Lib(buf) {
+function FF7Lib(buf /*:?Buffer*/) {
   const myStructure = structure();
   if (buf) {
     myStructure._setBuff(buf);
@@ -45,6 +46,7 @@ function getpath(prop) {
   const elements = prop.split('.');
   let current = this;
   elements.forEach(element => {
+    // $FlowIssue https://github.com/facebook/flow/issues/1234
     current = current.get(element);
   });
   return current;
@@ -53,13 +55,14 @@ function getpath(prop) {
 /**
  * Allows a structure member to be set by one text string as a path
  *
- * @param   {String} prop Dot-separated path to some property
- * @param   {mixed}  data New value of that property
+ * @param {String} prop Dot-separated path to some property
+ * @param {mixed}  data New value of that property
  */
 function setpath(prop, data) {
   const elements = prop.split('.');
   const last = elements.pop();
   const parent = getpath(elements.join('.'));
+  // $FlowIssue https://github.com/facebook/flow/issues/1234
   parent.set(last, data);
 }
 
