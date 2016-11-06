@@ -26,7 +26,7 @@ Struct.prototype.enfftext = enfftext;
  * @returns {String}
  */
 function defftext() {
-	const result = [];
+  const result = [];
   for (let i = 0; i < this.length(); i++) {
     const cc = this.get(i);
     if (cc === 0xFF) break;
