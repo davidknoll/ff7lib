@@ -5,7 +5,9 @@
 
 'use strict';
 
+// Builtin imports
 const fs = require('fs');
+// Project imports
 const ff7lib = require('./ff7lib');
 
 const rawbuf = fs.readFileSync(process.argv[2]);

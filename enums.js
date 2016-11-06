@@ -4,7 +4,9 @@
 
 'use strict';
 
+// Names for portrait/character IDs
 const PortraitEnum = {
+  // Main party
   0: "Cloud",
   1: "Barret",
   2: "Tifa",
@@ -21,7 +23,9 @@ const PortraitEnum = {
   255: "None"
 };
 
+// Names for Materia
 const MateriaEnum = {
+  // Independent
   0: "MP Plus",
   1: "HP Plus",
   2: "Speed Plus",
@@ -36,15 +40,19 @@ const MateriaEnum = {
   11: "Long Range",
   12: "Mega All",
   13: "Counter Attack",
+  // Command
   14: "Slash-All",
   15: "Double Cut",
 
+  // Independent
   16: "Cover",
   17: "Underwater",
   18: "HP <-> MP",
+  // Command
   19: "W-Magic",
   20: "W-Summon",
   21: "W-Item",
+  // Support
   23: "All",
   24: "Counter",
   25: "Magic Counter",
@@ -59,6 +67,7 @@ const MateriaEnum = {
   33: "Added Cut",
   34: "Steal As Well",
   35: "Quadra Magic",
+  // Command
   36: "Steal",
   37: "Sense",
   39: "Throw",
@@ -69,6 +78,7 @@ const MateriaEnum = {
   44: "Enemy Skill",
 
   48: "Master Command",
+  // Magic
   49: "Fire",
   50: "Ice",
   51: "Earth",
@@ -92,6 +102,7 @@ const MateriaEnum = {
   71: "Shield",
   72: "Ultima",
   73: "Master Magic",
+  // Summon
   74: "Choco/Mog",
   75: "Shiva",
   76: "Ifrit",

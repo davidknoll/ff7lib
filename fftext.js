@@ -7,7 +7,10 @@
 
 'use strict';
 
+// Library imports
 const Struct = require('struct');
+
+// Extend struct with FF-Text functions
 Struct.prototype.defftext = defftext;
 Struct.prototype.enfftext = enfftext;
 

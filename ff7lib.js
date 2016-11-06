@@ -7,11 +7,18 @@
 
 'use strict';
 
+// Project imports
 const enums = require('./enums');
 const fftext = require('./fftext');
 const structure = require('./structure');
 
-function ff7lib(buf) {
+/**
+ * Constructor for an FF7Lib save file object
+ *
+ * @param   {Buffer} Raw contents of file being loaded, optional
+ * @returns {FF7Lib}
+ */
+function FF7Lib(buf) {
   const myStructure = structure();
   if (buf) {
     myStructure._setBuff(buf);
@@ -21,4 +28,4 @@ function ff7lib(buf) {
   return myStructure;
 }
 
-module.exports = ff7lib;
+module.exports = FF7Lib;
