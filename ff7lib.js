@@ -28,4 +28,5 @@ function FF7Lib(buf) {
   return myStructure;
 }
 
+FF7Lib.enum = enums;
 module.exports = FF7Lib;

@@ -5,7 +5,7 @@
 'use strict';
 
 // Names for portrait/character IDs
-const PortraitEnum = {
+const character = {
   // Main party
   0: "Cloud",
   1: "Barret",
@@ -24,7 +24,7 @@ const PortraitEnum = {
 };
 
 // Names for Materia
-const MateriaEnum = {
+const materia = {
   // Independent
   0: "MP Plus",
   1: "HP Plus",
@@ -125,4 +125,4 @@ const MateriaEnum = {
   255: "Empty Slot"
 };
 
-module.exports = { PortraitEnum, MateriaEnum };
+module.exports = { character, materia };
