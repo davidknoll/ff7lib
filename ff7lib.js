@@ -45,7 +45,6 @@ function getpath(prop) {
   const elements = prop.split('.');
   let current = this;
   elements.forEach((element) => {
-    // $FlowIssue https://github.com/facebook/flow/issues/1234
     current = current.get(element);
   });
   return current;
@@ -62,7 +61,6 @@ function setpath(prop, data) {
   const elements = prop.split('.');
   const last = elements.pop();
   const parent = this.getpath(elements.join('.'));
-  // $FlowIssue https://github.com/facebook/flow/issues/1234
   parent.set(last, data);
 }
 Struct.prototype.setpath = setpath;
