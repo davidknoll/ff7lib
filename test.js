@@ -15,25 +15,20 @@ const rawbuf = fs.readFileSync(process.argv[2]);
 const savefile = new FF7Lib(rawbuf);
 
 // Look at some details
-const leader = savefile
-  .get('saves').get(0).get('preview').get('name')
-  .defftext();
-const location = savefile
-  .get('saves').get(0).get('preview').get('location')
-  .defftext();
-const gil = savefile
-  .get('saves').get(0).get('preview').get('gil');
+const leader = savefile.getpath('saves.0.preview.name').defftext();
+const location = savefile.getpath('saves.0.preview.location').defftext();
+const gil = savefile.getpath('saves.0.preview.gil');
 
 console.log(`Leader is ${leader}`);
 console.log(`Location is ${location}`);
 console.log(`You have ${gil} gil`);
 
-const party = savefile.get('saves').get(0).get('party-members');
+const party = savefile.getpath('saves.0.party-members');
 console.log('In party:');
 for (let i = 0; i < party.length(); i++) {
   const orig = FF7Lib.enum.character[party.get(i)];
   const chosen = savefile
-    .get('saves').get(0).get('character-records')
+    .getpath('saves.0.character-records')
     .get(party.get(i)).get('name').defftext();
   console.log(`Original: ${orig} Chosen: ${chosen}`);
 }
