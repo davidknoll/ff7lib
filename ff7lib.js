@@ -56,7 +56,7 @@ function getpath(prop) {
  * @param   {String} prop Dot-separated path to some property
  * @param   {mixed}  data New value of that property
  */
-function setpath(prop) {
+function setpath(prop, data) {
   const elements = prop.split('.');
   const last = elements.pop();
   const parent = getpath(elements.join('.'));
