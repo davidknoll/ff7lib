@@ -38,3 +38,5 @@ const oldsum = save0.get('checksum').toString(16);
 save0.checksum();
 const newsum = save0.get('checksum').toString(16);
 console.log(`Orig sum: ${oldsum} Calc sum: ${newsum}`);
+
+savefile.setpath('saves.0.preview.gil', 9001);

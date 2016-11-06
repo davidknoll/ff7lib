@@ -61,7 +61,7 @@ Struct.prototype.getpath = getpath;
 function setpath(prop, data) {
   const elements = prop.split('.');
   const last = elements.pop();
-  const parent = getpath(elements.join('.'));
+  const parent = this.getpath(elements.join('.'));
   // $FlowIssue https://github.com/facebook/flow/issues/1234
   parent.set(last, data);
 }
