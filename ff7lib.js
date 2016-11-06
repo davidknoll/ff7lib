@@ -18,7 +18,7 @@ require('./fftext');
 /**
  * Constructor for an FF7Lib save file object
  *
- * @param   {Buffer} Raw contents of file being loaded, optional
+ * @param   {Buffer} buf Raw contents of file being loaded, optional
  * @returns {FF7Lib}
  */
 function FF7Lib(buf /* :?Buffer*/) {

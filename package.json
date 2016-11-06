@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "jsdoc": "jsdoc -d ./jsdoc -R ./README.md ."
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "eslint": "^3.9.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^1.16.0",
-    "flow-bin": "^0.34.0"
+    "flow-bin": "^0.34.0",
+    "jsdoc": "^3.4.2"
   }
 }
